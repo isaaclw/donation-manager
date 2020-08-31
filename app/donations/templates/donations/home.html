@@ -1,0 +1,15 @@
+{% for c in categories %}
+<h1>{{ c.name }}</h1>
+<table>
+    <tr>
+        <th>Item Needed</th>
+        <th>Number Still Needed</th>
+    <tr>
+    {% for d in c.donations %}
+    <tr>
+        <td>{{ d.name }}</td>
+        <td>{{ d.still_needed }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endfor %}
