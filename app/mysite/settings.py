@@ -120,4 +120,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-from local_settings import SECRET_KEY
+from mysite.local_settings import SECRET_KEY
