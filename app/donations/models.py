@@ -9,6 +9,9 @@ class DonationCategory(models.Model):
     def donations(self):
         return RequestedDonation.objects.filter(category=self)
 
+    def __str__(self):
+        return self.name
+
 class RequestedDonation(models.Model):
     name = models.CharField(max_length=30)
     amount_needed = models.IntegerField()
@@ -22,6 +25,9 @@ class RequestedDonation(models.Model):
         if still_needed < 0:
             still_needed = 0
         return still_needed
+
+    def __str__(self):
+        return '%s (%s)' % (self.name, self.amount_needed)
 
 
 class Donor(models.Model):
