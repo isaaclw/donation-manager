@@ -3,14 +3,14 @@ from django.db import models
 # Create your models here.
 
 class DonationCategory(models.Model):
-    name = models.CharField()
-    description = models.CharField()
+    name = models.CharField(max_length=30)
+    description = models.CharField(max_length=255)
 
     def donations(self):
         return RequestedDonation.objects.filter(category=self)
 
 class RequestedDonation(models.Model):
-    name = models.CharField()
+    name = models.CharField(max_length=30)
     amount_needed = models.IntegerField()
     category = models.ForeignKey(DonationCategory, on_delete=models.CASCADE)
 
@@ -25,12 +25,12 @@ class RequestedDonation(models.Model):
 
 
 class Donor(models.Model):
-    address = models.CharField()
-    phone_number = models.CharField()
-    email_address = models.CharField()
-    contact_name = models.CharField()
-    organization = models.CharField()
-    key = models.CharField()
+    address = models.CharField(max_length=30)
+    phone_number = models.CharField(max_length=30)
+    email_address = models.CharField(max_length=30)
+    contact_name = models.CharField(max_length=30)
+    organization = models.CharField(max_length=30)
+    key = models.CharField(max_length=32)
 
 class DonationOffer(models.Model):
     amount = models.IntegerField()
