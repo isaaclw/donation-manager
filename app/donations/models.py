@@ -1,3 +1,5 @@
+import random
+import string
 from django.db import models
 
 # Create your models here.
@@ -36,7 +38,12 @@ class Donor(models.Model):
     email_address = models.CharField(max_length=30)
     contact_name = models.CharField(max_length=30)
     organization = models.CharField(max_length=30)
-    key = models.CharField(max_length=32)
+    key = models.CharField(max_length=32, unique=True)
+
+    def save(self, *args, **kwargs):
+        self.key = ''.join(random.sample(string.ascii_letters + string.digits,
+            32))
+        super(Donor, self).save(*args, **kwargs)
 
 class DonationOffer(models.Model):
     amount = models.IntegerField()
